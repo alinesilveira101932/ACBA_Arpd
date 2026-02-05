@@ -22,6 +22,16 @@ for i = 1:N
 end
 Bbarra = cell2mat(Bbarra);
 
+%% Ebarra - Caso com estimacao de perturbacao
+
+Eaux = mat2cell(zeros(nx*N,nd*N),nx*ones(N,1),nd*ones(1,N));
+
+for i = 1:N
+for j = 1:i
+Eaux{i,j} = (A^(i-j))*E;
+end
+end
+En = cell2mat(Eaux);
 
 %% Matrizes de peso
 Rbarra = R;
